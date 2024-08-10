@@ -135,7 +135,7 @@ pipeline {
             steps {
                 script{
                    withDockerRegistry(credentialsId: 'docker', toolName: 'docker'){
-                       sh 'docker-scout quickview'
+                       sh 'docker-scout quickview' //docker scout cves local://breaking-bad:latest
                    }
                 }   
             }
