@@ -150,16 +150,6 @@ pipeline {
                 }   
             }
         }
-
-        stage('Docker Scout Artifacts Analysis') {
-            steps {
-                script{
-                  withDockerRegistry(credentialsId: 'docker', toolName: 'docker'){
-                      sh 'docker-scout sbom --format list yash5090/brkg-bad:latest' // docker-scout sbom yash5090/brkg-bad:latest
-                    }
-                }   
-            }
-        }
         
         stage("Docker Image Building"){
             steps{
@@ -222,6 +212,16 @@ pipeline {
                 //dir('Band Website') {
                     sh "trivy image yash5090/brkg-bad:latest > trivyimage.txt"   
                 //}
+            }
+        }
+        
+        stage('Docker Scout Artifacts Analysis') {
+            steps {
+                script{
+                  withDockerRegistry(credentialsId: 'docker', toolName: 'docker'){
+                      sh 'docker-scout sbom --format list yash5090/brkg-bad:latest' // docker-scout sbom yash5090/brkg-bad:latest
+                    }
+                }   
             }
         }
         
