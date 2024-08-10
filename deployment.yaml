@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: brkg-bad-deployment
+spec:
+  replicas: 6  # Number of desired replicas
+  selector:
+    matchLabels:
+      app: brkg-bad
+  template:
+    metadata:
+      labels:
+        app: brkg-bad
+    spec:
+      containers:
+      - name: brkg-bad
+        image: yash5090/brkg-bad:latest
+        ports:
+        - containerPort: 3000
